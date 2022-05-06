@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const { allRoutes } = require("./routers/routes");
 
 module.exports = class Application {
   constructor(PORT, DB_URL) {
@@ -46,8 +47,6 @@ module.exports = class Application {
     });
   }
   createRoutes() {
-    app.get("/", (req, res) => {
-      res.send("Hello World!");
-    });
+    app.use(allRoutes);
   }
 };
