@@ -2,12 +2,12 @@ const { validationResult } = require("express-validator");
 
 module.exports = validationErrorMapper = (req, res, next) => {
   const errors = validationResult(req);
-  const mesagges = {};
+  const messages = {};
   if (!errors.isEmpty()) {
     errors.array().map((error) => {
-      return (mesagges[error.param] = error.msg);
+      return (messages[error.param] = error.msg);
     });
-    return res.status(422).json({ errors: mesagges });
+    throw { message: messages, success: false, status: 400 };
   }
   next();
 };

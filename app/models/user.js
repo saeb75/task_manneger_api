@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
     roles: {
-      type: String,
+      type: [String],
       default: ["USER"],
     },
     mobile: {
@@ -32,16 +32,20 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     skills: {
-      type: String,
+      type: [String],
       default: [],
     },
     teams: {
-      type: String,
+      type: [mongoose.Types.ObjectId],
       default: [],
+    },
+    token: {
+      type: String,
+      default: null,
     },
   },
   { timestamps: true }
 );
 
-const userModel = mongoose.model("user", userSchema);
-module.exports = { userModel };
+const UserModel = mongoose.model("user", userSchema);
+module.exports = { UserModel };

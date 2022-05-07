@@ -18,6 +18,7 @@ module.exports = class Application {
     });
   }
   configApplication() {
+    require("dotenv").config();
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
   }
