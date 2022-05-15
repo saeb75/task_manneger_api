@@ -18,6 +18,7 @@ router.post(
   validationErrorMapper,
   AuthController.login
 );
+
 module.exports = {
   authRouter: router,
 };

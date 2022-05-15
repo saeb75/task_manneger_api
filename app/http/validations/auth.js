@@ -12,7 +12,6 @@ const register = () => {
         if (value) {
           const user = await UserModel.findOne({ email: value });
           if (user) {
-            console.log(user);
             throw new Error("this email is already exists");
           }
           return true;

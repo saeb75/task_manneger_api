@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require("path");
+const { helper } = require("./modules/helprs");
 const { allRoutes } = require("./routers/routes");
 
 module.exports = class Application {
@@ -18,8 +20,10 @@ module.exports = class Application {
     });
   }
   configApplication() {
+    app.use(express.static(path.join(__dirname, "../public")));
     require("dotenv").config();
     app.use(express.json());
+
     app.use(express.urlencoded({ extended: true }));
   }
   createServer(PORT) {
