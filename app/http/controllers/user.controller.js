@@ -37,8 +37,23 @@ class UserController {
       next(error);
     }
   }
-  uploadProfile(req, res) {
-    console.log(req.file, req.body);
+  async uploadProfile(req, res) {
+    if (req.file) {
+      const updatedUser = await UserModel.findOneAndUpdate(
+        { _id: req.user._id },
+        { avatar: req.file.destination.substring(7) + "/" + req.file.filename }
+      );
+      return res.json({
+        success: true,
+        result: req.file.destination.substring(7) + "/" + req.file.filename,
+        message: "upload profile is success",
+      });
+    } else {
+      return res.json({
+        success: false,
+        result: "please choose a file",
+      });
+    }
   }
   addSkill(req, res) {}
   editSkill(req, res) {}

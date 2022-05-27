@@ -10,7 +10,7 @@ const projectSchema = new mongoose.Schema(
       type: String,
     },
     image: {
-      type: string,
+      type: String,
       default: "/defaults/image.jpg",
     },
     owner: {

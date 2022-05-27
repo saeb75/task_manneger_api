@@ -12,7 +12,7 @@ class HelperFunctions {
   }
   generateToken(payload) {
     return jwt.sign(payload, process.env.TOKEN_SECRET_CODE, {
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
   }
   createUploadPath() {
@@ -25,7 +25,7 @@ class HelperFunctions {
       `../../public/upload/${year}/${month}/${day}`
     );
     fs.mkdirSync(uploadPath, { recursive: true });
-    return uploadPath;
+    return `public/upload/${year}/${month}/${day}`;
   }
 }
 module.exports = {

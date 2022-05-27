@@ -20,6 +20,7 @@ module.exports = class Application {
     });
   }
   configApplication() {
+    console.log(path.join(__dirname, "../public"));
     app.use(express.static(path.join(__dirname, "../public")));
     require("dotenv").config();
     app.use(express.json());
